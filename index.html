@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second-Year Student Materials</title>
+  <style>
+    /* Reset essenziale e tipografia di sistema leggera */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #FFFFFF;
+      color: #3A251E;
+      font-family: Verdana, Arial, sans-serif;
+      line-height: 1.5;
+      padding: 32px 16px 56px;
+    }
+
+    /* Contenitore principale centrato */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 1. Fascia superiore dritta color pesca cipria vellutato */
+    .top-banner {
+      width: 100%;
+      background-color: #F39B7E;
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 34px 24px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(224, 126, 95, 0.2);
+    }
+
+    .top-banner h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+    }
+
+    .top-banner p {
+      font-size: 0.98rem;
+      font-weight: 400;
+      color: #FDF6F3;
+    }
+
+    /* 2. Righello orizzontale dritto largo esattamente quanto la fascia */
+    .ruler-box {
+      width: 100%;
+      height: 30px;
+      margin-top: 14px;
+      background-color: #FDF6F3;
+      border: 1.5px solid #E07E5F;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .ruler-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 3. Griglia responsive a 3 colonne */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+      .top-banner h1 {
+        font-size: 1.45rem;
+      }
+    }
+
+    /* Struttura casella con bordi a zig-zag SVG sopra e sotto */
+    .zigzag-card {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease;
+    }
+
+    .zigzag-card.active:hover {
+      transform: translateY(-2px);
+    }
+
+    .zigzag-edge {
+      display: block;
+      width: 100%;
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Corpo centrale casella attiva */
+    .card-body {
+      flex: 1;
+      background-color: #FDF6F3;
+      border-left: 2px solid #E07E5F;
+      border-right: 2px solid #E07E5F;
+      padding: 18px 16px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #B84D2E;
+      text-align: center;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1.5px dashed #F3B39E;
+    }
+
+    /* Link interni stilizzati come righe/bottoni cliccabili */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: auto 0;
+    }
+
+    .topic-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background-color: #FFFFFF;
+      border: 1.5px solid #F3B39E;
+      border-left: 4px solid #E07E5F;
+      border-radius: 7px;
+      text-decoration: none;
+      color: #3A251E;
+      font-size: 0.84rem;
+      font-weight: 700;
+      line-height: 1.4;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .topic-link:hover {
+      background-color: #FDECE6;
+      border-color: #E07E5F;
+      color: #B84D2E;
+    }
+
+    .topic-link .arrow {
+      color: #E07E5F;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    /* Corpo centrale caselle Coming soon */
+    .card-body-soon {
+      flex: 1;
+      background-color: #FFFFFF;
+      border-left: 2px solid #F3B39E;
+      border-right: 2px solid #F3B39E;
+      min-height: 170px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .soon-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #C9826B;
+      letter-spacing: 0.01em;
+    }
+
+    /* 4. Pulsante discreto a fondo pagina per scaricare index.html */
+    .footer-actions {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .download-btn {
+      background-color: #F39B7E;
+      color: #FFFFFF;
+      border: 1.5px solid #E07E5F;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: Verdana, Arial, sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.16s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #E07E5F;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <!-- 1. Fascia superiore dritta -->
+    <header class="top-banner">
+      <h1>Second-Year Student Materials</h1>
+      <p>Review and practice the topics covered in class</p>
+    </header>
+
+    <!-- 2. Righello orizzontale dritto con tacche e numeri discreti -->
+    <div class="ruler-box" aria-hidden="true">
+      <svg class="ruler-svg" viewBox="0 0 960 30" preserveAspectRatio="none">
+        <defs>
+          <!-- Ripete 4 tacche per ogni unità (20 unità = 48px ciascuna su 960px) -->
+          <pattern id="ruler-ticks" width="48" height="30" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="16" x2="0" y2="30" stroke="#E07E5F" stroke-width="1.5" />
+            <line x1="12" y1="23" x2="12" y2="30" stroke="#E07E5F" stroke-width="1" />
+            <line x1="24" y1="20" x2="24" y2="30" stroke="#E07E5F" stroke-width="1.2" />
+            <line x1="36" y1="23" x2="36" y2="30" stroke="#E07E5F" stroke-width="1" />
+          </pattern>
+        </defs>
+        <rect width="960" height="30" fill="url(#ruler-ticks)" />
+        <!-- Numeri discreti da 0 a 20 -->
+        <g fill="#B84D2E" font-family="Verdana, Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle">
+          <text x="8" y="12">0</text>
+          <text x="96" y="12">2</text>
+          <text x="192" y="12">4</text>
+          <text x="288" y="12">6</text>
+          <text x="384" y="12">8</text>
+          <text x="480" y="12">10</text>
+          <text x="576" y="12">12</text>
+          <text x="672" y="12">14</text>
+          <text x="768" y="12">16</text>
+          <text x="864" y="12">18</text>
+          <text x="950" y="12">20</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Pattern SVG condivisi per i bordi a zig-zag delle caselle -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <!-- Zig-zag superiore (caselle attive) -->
+        <pattern id="zz-top-active" width="20" height="10" patternUnits="userSpaceOnUse">
+          <polygon points="0,10 10,0 20,10" fill="#FDF6F3" />
+          <polyline points="0,10 10,0 20,10" fill="none" stroke="#E07E5F" stroke-width="2" />
+        </pattern>
+        <!-- Zig-zag inferiore (caselle attive) -->
+        <pattern id="zz-bot-active" width="20" height="10" patternUnits="userSpaceOnUse">
+          <polygon points="0,0 10,10 20,0" fill="#FDF6F3" />
+          <polyline points="0,0 10,10 20,0" fill="none" stroke="#E07E5F" stroke-width="2" />
+        </pattern>
+
+        <!-- Zig-zag superiore (caselle coming soon) -->
+        <pattern id="zz-top-soon" width="20" height="10" patternUnits="userSpaceOnUse">
+          <polygon points="0,10 10,0 20,10" fill="#FFFFFF" />
+          <polyline points="0,10 10,0 20,10" fill="none" stroke="#F3B39E" stroke-width="2" />
+        </pattern>
+        <!-- Zig-zag inferiore (caselle coming soon) -->
+        <pattern id="zz-bot-soon" width="20" height="10" patternUnits="userSpaceOnUse">
+          <polygon points="0,0 10,10 20,0" fill="#FFFFFF" />
+          <polyline points="0,0 10,10 20,0" fill="none" stroke="#F3B39E" stroke-width="2" />
+        </pattern>
+      </defs>
+    </svg>
+
+    <!-- 3. Griglia a 3 colonne con 6 caselle -->
+    <main class="topics-grid">
+
+      <!-- Casella 1: Past Simple -->
+      <article class="zigzag-card active">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-active)" />
+        </svg>
+        <div class="card-body">
+          <h2 class="card-title">Past Simple</h2>
+          <div class="links-list">
+            <a href="past-simple-rules.html" class="topic-link">
+              <span>General rules and exercises (regular and irregular verbs)</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+            <a href="irregular-verbs.html" class="topic-link">
+              <span>List and practice (irregular verbs only)</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-active)" />
+        </svg>
+      </article>
+
+      <!-- Casella 2: Vocabulary – Feelings and emotions -->
+      <article class="zigzag-card active">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-active)" />
+        </svg>
+        <div class="card-body">
+          <h2 class="card-title">Vocabulary – Feelings and emotions</h2>
+          <div class="links-list">
+            <a href="feelings-emotions.html" class="topic-link">
+              <span>Vocabulary and exercises</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-active)" />
+        </svg>
+      </article>
+
+      <!-- Casella 3: Coming soon -->
+      <article class="zigzag-card">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-soon)" />
+        </svg>
+        <div class="card-body-soon">
+          <span class="soon-label">Coming soon</span>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-soon)" />
+        </svg>
+      </article>
+
+      <!-- Casella 4: Coming soon -->
+      <article class="zigzag-card">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-soon)" />
+        </svg>
+        <div class="card-body-soon">
+          <span class="soon-label">Coming soon</span>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-soon)" />
+        </svg>
+      </article>
+
+      <!-- Casella 5: Coming soon -->
+      <article class="zigzag-card">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-soon)" />
+        </svg>
+        <div class="card-body-soon">
+          <span class="soon-label">Coming soon</span>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-soon)" />
+        </svg>
+      </article>
+
+      <!-- Casella 6: Coming soon -->
+      <article class="zigzag-card">
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-top-soon)" />
+        </svg>
+        <div class="card-body-soon">
+          <span class="soon-label">Coming soon</span>
+        </div>
+        <svg class="zigzag-edge" width="100%" height="10" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="100%" height="10" fill="url(#zz-bot-soon)" />
+        </svg>
+      </article>
+
+    </main>
+
+    <!-- 4. Pulsante discreto per scaricare index.html -->
+    <footer class="footer-actions" id="download-footer">
+      <button type="button" class="download-btn" onclick="downloadIndex()">
+        Scarica index.html
+      </button>
+    </footer>
+
+  </div>
+
+  <script>
+    function downloadIndex() {
+      const clone = document.documentElement.cloneNode(true);
+      const footer = clone.querySelector('#download-footer');
+      if (footer) footer.remove();
+
+      const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'index.html';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>
