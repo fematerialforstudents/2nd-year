@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Simple – A2 Interactive Lesson</title>
+<style>
+:root{--ink:#1b1340;--bg:#fff7e8;--card:#fff;--reg:#2bb673;--irr:#ff5a36;--pop:#6c4bff;--sun:#ffc933;--line:#1b1340}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:18px}
+header{background:var(--pop);color:#fff;padding:28px 18px 70px;text-align:center;position:relative}
+header h1{margin:0;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-1px;font-weight:900}
+header h1 span{display:inline-block;background:var(--sun);color:var(--ink);padding:0 12px;border-radius:12px;transform:rotate(-3deg)}
+header p{margin:8px 0 0;opacity:.9}
+.xp{position:absolute;top:12px;right:14px;background:var(--sun);color:var(--ink);font-weight:900;padding:6px 14px;border-radius:99px;border:3px solid var(--line)}
+nav{display:flex;gap:8px;max-width:900px;margin:-34px auto 0;padding:0 12px;flex-wrap:wrap;justify-content:center;position:relative}
+nav button{flex:1 1 190px;font:inherit;font-weight:800;padding:12px 8px;border:3px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);cursor:pointer;box-shadow:0 5px 0 var(--line);transition:transform .1s}
+nav button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--line)}
+nav button.on.r{background:var(--reg);color:#fff}nav button.on.i{background:var(--irr);color:#fff}
+main{max-width:900px;margin:22px auto 60px;padding:0 14px}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:20px;margin-bottom:20px;box-shadow:0 6px 0 var(--line)}
+h2{margin:0 0 8px;font-size:1.5rem}h3{margin:0 0 6px}
+.chip{display:inline-block;background:var(--sun);border:2px solid var(--line);border-radius:99px;padding:2px 12px;margin:3px;font-weight:700;font-size:.9rem}
+.formula{background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:1.15rem;text-align:center;margin:10px 0}
+.formula b{color:var(--sun)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.rule{border:3px solid var(--line);border-radius:16px;padding:12px;background:#e9fff3;cursor:pointer;font:inherit;text-align:left;color:var(--ink)}
+.rule.act{background:var(--reg);color:#fff}
+.rule small{display:block;opacity:.85}
+.machine{text-align:center}
+.verbs button,.opt,.btn,.sw button{font:inherit;font-weight:800;border:3px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:6px 14px;margin:4px;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+.verbs button.act,.sw button.act{background:var(--pop);color:#fff}
+.out{font-size:2.2rem;font-weight:900;margin:12px 0 4px}
+.out em{font-style:normal;color:var(--reg)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.col{border:3px solid var(--line);border-radius:16px;padding:12px;text-align:center}
+.col .snd{font-size:1.6rem;font-weight:900}
+.say{cursor:pointer;display:inline-block;margin:3px;padding:4px 12px;border-radius:99px;background:#fff;border:2px solid var(--line);font-weight:700}
+.say:hover{background:var(--sun)}
+.say::before{content:"🔊 "}
+.sentence{font-size:1.4rem;text-align:center;min-height:2.2em;font-weight:700}
+.sentence mark{background:var(--sun);border-radius:6px;padding:0 6px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{font:inherit;font-weight:800;border:3px solid var(--line);border-radius:99px;background:#fff;color:var(--ink);padding:6px 16px;cursor:pointer}
+.tabs button.act{background:var(--irr);color:#fff}
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.flip{height:86px;border:3px solid var(--line);border-radius:16px;background:#fff;font:inherit;font-weight:900;font-size:1.2rem;cursor:pointer;color:var(--ink);box-shadow:0 4px 0 var(--line)}
+.flip.on{background:var(--irr);color:#fff}
+.tip{background:#fff1c4;border-left:8px solid var(--sun);border-radius:10px;padding:8px 12px;margin:10px 0}
+.bar{height:14px;border:3px solid var(--line);border-radius:99px;overflow:hidden;background:#fff;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--pop);transition:width .3s}
+.q{font-size:1.5rem;font-weight:800;text-align:center;margin:10px 0}
+.opts{display:flex;flex-direction:column;gap:6px;max-width:420px;margin:0 auto}
+.opt{width:100%}
+.opt.ok,.ok{background:var(--reg)!important;color:#fff}
+.opt.no{background:#ff4d6d!important;color:#fff}
+input.ans{font:inherit;font-size:1.3rem;text-align:center;border:3px solid var(--line);border-radius:12px;padding:8px;width:min(300px,90%);display:block;margin:0 auto 10px}
+.fb{text-align:center;font-weight:800;min-height:2em;margin:8px}
+.center{text-align:center}
+.btn{background:var(--pop);color:#fff}
+.res{text-align:center}.res h2{font-size:3rem;margin:0}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;max-width:420px;margin:0 auto}
+.match button{font:inherit;font-weight:800;border:3px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:10px;cursor:pointer}
+.match button.sel{background:var(--sun)}.match button.done{background:var(--reg);color:#fff;pointer-events:none}.match button.bad{background:#ff4d6d;color:#fff}
+.h{display:flex;align-items:center;gap:10px}.h .e{font-size:2rem}
+:focus-visible{outline:4px solid var(--pop);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+nav button.on.p{background:var(--pop);color:#fff}
+.tw{font:inherit;font-weight:800;border:3px solid var(--line);border-radius:12px;background:#fff;padding:6px 12px;margin:4px;cursor:pointer;color:var(--ink)}
+.line{min-height:3.4em;border:3px dashed var(--line);border-radius:14px;padding:6px;margin-bottom:10px;text-align:center;background:#fff7d6}
+.bad-ex{color:#d6204a;text-decoration:line-through}.good-ex{color:#11885a;font-weight:800}
+</style>
+</head>
+<body>
+<header>
+  <div class="xp">⭐ <span id="xp">0</span> XP · <span id="rk">Rookie 🐣</span></div>
+  <h1>Past <span>Simple</span></h1>
+  <p>Talk about yesterday, last week, last year. Learn regular verbs, beat the irregular ones, then face the boss level.</p>
+</header>
+<nav id="nav">
+  <button class="r on" data-t="rl">🌱 Regular: learn</button>
+  <button class="r" data-t="rp">✏️ Regular: practise</button>
+  <button class="i" data-t="il">🔥 Irregular: learn</button>
+  <button class="i" data-t="ip">🎯 Irregular: practise</button>
+  <button class="p" data-t="mc">🏆 Boss level: mixed</button>
+</nav>
+<main>
+
+<!-- REGULAR LEARN -->
+<section id="rl" class="on">
+  <div class="card">
+    <h2>When do we use it?</h2>
+    <p>For things that <b>started and finished</b> in the past. Look for time words:</p>
+    <span class="chip">yesterday</span><span class="chip">last night</span><span class="chip">last week</span><span class="chip">in 2019</span><span class="chip">two days ago</span>
+    <div class="formula">Regular verb: <b>verb + -ed</b> &nbsp;·&nbsp; same for I / you / he / she / it / we / they</div>
+  </div>
+
+  <div class="card">
+    <h2>4 spelling rules: tap one</h2>
+    <div class="rules" id="rules"></div>
+  </div>
+
+  <div class="card machine">
+    <h2>⚙️ The Past Simple machine</h2>
+    <p>Pick a verb. Watch what happens.</p>
+    <div class="verbs" id="mv"></div>
+    <div class="out" id="mo">play → <em>played</em></div>
+    <div id="mr" class="chip">Just add -ed</div>
+  </div>
+
+  <div class="card">
+    <h2>🔊 How do we say -ed?</h2>
+    <p>Tap the words to listen. There are 3 sounds.</p>
+    <div class="cols" id="pron"></div>
+    <div class="tip">Trick: after <b>t</b> or <b>d</b> you hear an extra syllable: want<b>ed</b>, need<b>ed</b>.</div>
+  </div>
+
+  <div class="card">
+    <h2>✅ ❌ ❓ Sentence switcher</h2>
+    <p>After <b>did</b> and <b>didn't</b>, the verb goes back to normal. No -ed!</p>
+    <div class="sw" id="sw"></div>
+    <div class="sentence" id="ss"></div>
+    <div class="sw center" id="sv"></div>
+  </div>
+  <div class="card">
+    <h2>🚨 Top 5 mistakes</h2>
+    <p><span class="bad-ex">Did you played?</span> → <span class="good-ex">Did you play?</span></p>
+    <p><span class="bad-ex">She didn't liked it.</span> → <span class="good-ex">She didn't like it.</span></p>
+    <p><span class="bad-ex">I studyed.</span> → <span class="good-ex">I studied.</span></p>
+    <p><span class="bad-ex">We stoped.</span> → <span class="good-ex">We stopped.</span></p>
+    <p><span class="bad-ex">He playd football.</span> → <span class="good-ex">He played football.</span></p>
+  </div>
+  <p class="center"><button class="btn" onclick="go('rp')">Ready? Practise now ✏️</button></p>
+</section>
+
+<!-- REGULAR PRACTICE -->
+<section id="rp">
+  <div class="card"><h2>1. Write the past form</h2><div id="q1"></div></div>
+  <div class="card"><h2>2. Choose the correct answer</h2><div id="q2"></div></div>
+  <div class="card"><h2>3. Spelling doctor</h2><div id="q5"></div></div>
+  <div class="card"><h2>4. Say it right: /t/, /d/ or /ɪd/?</h2><div id="q6"></div></div>
+  <div class="card"><h2>5. Make it negative</h2><div id="q7"></div></div>
+  <p class="center"><button class="btn" onclick="go('il')">Next level: irregular verbs 🔥</button></p>
+</section>
+
+<!-- IRREGULAR LEARN -->
+<section id="il">
+  <div class="card">
+    <h2>Irregular verbs break the rule</h2>
+    <p>No -ed. You must <b>learn them</b>. Good news: they come in families, and the negative and question forms are exactly the same as for regular verbs (<b>didn't</b> / <b>Did</b> + base verb).</p>
+    <div class="formula">I <b>went</b> to Rome. → I <b>didn't go</b> to Rome. → <b>Did</b> you <b>go</b> to Rome?</div>
+  </div>
+  <div class="card">
+    <h2>Pick a family, then tap each card</h2>
+    <div class="tabs" id="gt"></div>
+    <div class="tip" id="gtip"></div>
+    <div class="flips" id="gf"></div>
+  </div>
+  <p class="center"><button class="btn" onclick="go('ip')">Test me 🎯</button></p>
+</section>
+
+<!-- IRREGULAR PRACTICE -->
+<section id="ip">
+  <div class="card"><h2>1. Match the pairs</h2><div id="m1"></div></div>
+  <div class="card"><h2>2. Write the past form</h2><div id="q3"></div></div>
+  <div class="card"><h2>3. Complete the sentence</h2><div id="q4"></div></div>
+  <div class="card"><h2>4. Make it negative</h2><div id="q8"></div></div>
+  <p class="center"><button class="btn" onclick="go('mc')">Boss level 🏆</button></p>
+</section>
+
+<!-- BOSS LEVEL -->
+<section id="mc">
+  <div class="card"><h2>🏆 Boss level</h2><p>Regular and irregular verbs, negatives and questions, all mixed. Every correct answer gives you XP. Reach 500 XP to become a Legend.</p></div>
+  <div class="card"><h2>1. Which sentence is correct?</h2><div id="q9"></div></div>
+  <div class="card"><h2>2. Word order</h2><div id="b1"></div></div>
+  <div class="card"><h2>3. Make a question with Did</h2><div id="q10"></div></div>
+  <div class="card"><h2>4. Saturday story</h2><div id="q11"></div></div>
+  <div class="card"><h2>5. Regular or irregular?</h2><div id="q12"></div></div>
+</section>
+
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let xp=0;const addXP=n=>{xp+=n;$('#xp').textContent=xp;$('#rk').textContent=xp>=500?'Legend 👑':xp>=300?'Pro 🚀':xp>=120?'Explorer 🧭':'Rookie 🐣'};
+function go(t){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===t));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));scrollTo({top:0,behavior:'smooth'})}
+$('#nav').onclick=e=>{if(e.target.dataset.t)go(e.target.dataset.t)};
+const say=w=>{try{const u=new SpeechSynthesisUtterance(w);u.lang='en-GB';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}};
+
+/* ---------- regular machine ---------- */
+const dbl=['stop','plan','drop','shop','chat'];
+function past(v){if(/[^aeiou]y$/.test(v))return[v.slice(0,-1)+'ied','Consonant + y → change y to <b>ied</b>'];if(/e$/.test(v))return[v+'d','Ends in -e → just add <b>-d</b>'];if(dbl.includes(v))return[v+v.slice(-1)+'ed','1 vowel + 1 consonant → <b>double</b> the consonant + ed'];return[v+'ed','Just add <b>-ed</b>']}
+const rules=[['Most verbs','+ ed','walk → walked'],['Ends in -e','+ d','like → liked'],['Consonant + y','y → ied','study → studied'],['1 vowel + 1 consonant','double + ed','stop → stopped']];
+$('#rules').innerHTML=rules.map((r,i)=>`<button class="rule" data-i="${i}"><b>${r[0]}</b><small>${r[1]}</small><small class="ex" hidden>${r[2]}</small></button>`).join('');
+$('#rules').onclick=e=>{const b=e.target.closest('.rule');if(!b)return;b.classList.toggle('act');b.querySelector('.ex').hidden=!b.classList.contains('act')};
+const mverbs=['walk','play','like','live','study','try','stop','plan','watch','cook','dance','carry'];
+$('#mv').innerHTML=mverbs.map(v=>`<button>${v}</button>`).join('');
+$('#mv').onclick=e=>{if(e.target.tagName!=='BUTTON')return;[...$('#mv').children].forEach(b=>b.classList.remove('act'));e.target.classList.add('act');const v=e.target.textContent,[p,r]=past(v);$('#mo').innerHTML=`${v} → <em>${p}</em>`;$('#mr').innerHTML=r;say(p)};
+const pr=[['/t/',['walked','watched','helped','cooked']],['/d/',['played','cleaned','listened','lived']],['/ɪd/',['wanted','started','visited','needed']]];
+$('#pron').innerHTML=pr.map(p=>`<div class="col"><div class="snd">${p[0]}</div>${p[1].map(w=>`<span class="say" tabindex="0">${w}</span>`).join('')}</div>`).join('');
+$('#pron').onclick=e=>{if(e.target.classList.contains('say'))say(e.target.textContent)};
+$('#pron').onkeydown=e=>{if(e.key==='Enter'&&e.target.classList.contains('say'))say(e.target.textContent)};
+const sents=[['She','played','play','tennis','yesterday'],['We','visited','visit','Paris','last year'],['They','cleaned','clean','the kitchen','last night'],['I','studied','study','English','two days ago']];
+let si=0,sm='+';
+$('#sv').innerHTML=sents.map((s,i)=>`<button class="${i?'':'act'}">${s[0]} … ${s[3]}</button>`).join('');
+$('#sw').innerHTML=['+','−','?'].map((m,i)=>`<button class="${i?'':'act'}" data-m="${m}">${['✅ Positive','❌ Negative','❓ Question'][i]}</button>`).join('');
+function drawS(){const s=sents[si];$('#ss').innerHTML={'+':`${s[0]} <mark>${s[1]}</mark> ${s[3]} ${s[4]}.`,'−':`${s[0]} <mark>didn't ${s[2]}</mark> ${s[3]} ${s[4]}.`,'?':`<mark>Did</mark> ${s[0].toLowerCase()==='i'?'I':s[0].toLowerCase()} <mark>${s[2]}</mark> ${s[3]} ${s[4]}?`}[sm]}
+$('#sw').onclick=e=>{if(!e.target.dataset.m)return;sm=e.target.dataset.m;[...$('#sw').children].forEach(b=>b.classList.toggle('act',b===e.target));drawS()};
+$('#sv').onclick=e=>{const i=[...$('#sv').children].indexOf(e.target);if(i<0)return;si=i;[...$('#sv').children].forEach(b=>b.classList.toggle('act',b===e.target));drawS()};drawS();
+
+/* ---------- irregular families ---------- */
+const fam={
+'Same form':{tip:'Easy! These verbs do not change. (read is written the same but sounds like "red".)',v:[['put','put'],['cut','cut'],['hit','hit'],['let','let'],['read','read']]},
+'Change a vowel':{tip:'Often one vowel changes: i → a, e → a…',v:[['sit','sat'],['drink','drank'],['swim','swam'],['run','ran'],['begin','began'],['come','came'],['give','gave'],['eat','ate'],['take','took'],['write','wrote'],['see','saw'],['get','got'],['sing','sang'],['drive','drove'],['speak','spoke'],['wear','wore'],['wake','woke'],['forget','forgot'],['win','won']]},
+'-ought / -aught':{tip:'Same sound /ɔːt/ every time. Learn them as a group.',v:[['buy','bought'],['think','thought'],['bring','brought'],['catch','caught'],['teach','taught']]},
+'Very different':{tip:'No pattern here. Say them out loud again and again!',v:[['go','went'],['be','was / were'],['do','did'],['have','had'],['make','made'],['say','said'],['find','found'],['tell','told'],['leave','left'],['meet','met'],['know','knew'],['fly','flew'],['sell','sold'],['stand','stood']]},
+'Ends in -t / -d':{tip:'The past form ends in -t or -d, and the vowel often gets shorter.',v:[['lose','lost'],['send','sent'],['spend','spent'],['build','built'],['feel','felt'],['sleep','slept'],['keep','kept'],['pay','paid']]}};
+const gk=Object.keys(fam);let cg=gk[0];
+$('#gt').innerHTML=gk.map(k=>`<button>${k}</button>`).join('');
+function drawG(){[...$('#gt').children].forEach(b=>b.classList.toggle('act',b.textContent===cg));$('#gtip').textContent='💡 '+fam[cg].tip;$('#gf').innerHTML=fam[cg].v.map(v=>`<button class="flip" data-b="${v[0]}" data-p="${v[1]}">${v[0]}</button>`).join('')}
+$('#gt').onclick=e=>{if(e.target.tagName==='BUTTON'){cg=e.target.textContent;drawG()}};
+$('#gf').onclick=e=>{const b=e.target.closest('.flip');if(!b)return;const on=b.classList.toggle('on');b.textContent=on?b.dataset.p:b.dataset.b;if(on)say(b.dataset.p.split(' / ')[0])};drawG();
+
+/* ---------- quiz engine ---------- */
+function Quiz(el,items){
+  let list,i,s;
+  const start=()=>{list=sh(items);i=0;s=0;draw()};
+  function draw(){
+    if(i>=list.length){const p=s/list.length;el.innerHTML=`<div class="res"><h2>${s}/${list.length}</h2><p>${p==1?'🏆 Perfect! You are a Past Simple star!':p>=.7?'🎉 Great job! Almost perfect.':p>=.5?'👍 Good start. Try again to beat your score.':'💪 Go back to the lesson, then try again.'}</p><button class="btn" id="rt">Try again</button></div>`;$('#'+el.id+' #rt').onclick=start;return}
+    const it=list[i];
+    el.innerHTML=`<div class="bar"><i style="width:${i/list.length*100}%"></i></div><p class="q">${it.q}</p>`+
+     (it.o?`<div class="opts">${sh(it.o).map(o=>`<button class="opt">${o}</button>`).join('')}</div>`:`<input class="ans" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Type here…"><div class="center"><button class="btn chk">Check</button></div>`)+`<div class="fb"></div>`;
+    const fb=el.querySelector('.fb');let fin=false;
+    const done=(ok,given)=>{if(fin)return;fin=true;if(ok){s++;addXP(10);fb.textContent='✅ Yes! +10 XP'}else fb.innerHTML=`❌ Correct answer: <b>${it.a[0]}</b>`;
+      if(it.o)el.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(it.a.includes(b.textContent))b.classList.add('ok');else if(b.textContent===given)b.classList.add('no')});
+      else{el.querySelector('input').disabled=true;el.querySelector('.chk').remove()}
+      const n=document.createElement('button');n.className='btn';n.textContent=i+1<list.length?'Next':'See score';n.onclick=()=>{i++;draw()};fb.after(n);n.focus()};
+    if(it.o)el.querySelector('.opts').onclick=e=>{if(e.target.classList.contains('opt'))done(it.a.includes(e.target.textContent),e.target.textContent)};
+    else{const inp=el.querySelector('input'),chk=()=>{const v=inp.value.trim().toLowerCase().replace(/[’‘]/g,"'").replace(/[.?!]+$/,"").replace(/\s+/g," ");if(v)done(it.a.includes(v),v)};el.querySelector('.chk').onclick=chk;inp.onkeydown=e=>{if(e.key==='Enter')chk()};inp.focus()}
+  }
+  start();
+}
+const T=(v,a)=>({q:`<small>Yesterday…</small><br>${v} → ?`,a:[a]});
+Quiz($('#q1'),[['walk','walked'],['like','liked'],['study','studied'],['stop','stopped'],['play','played'],['dance','danced'],['carry','carried'],['plan','planned'],['watch','watched'],['try','tried'],['help','helped'],['live','lived'],['cry','cried'],['shop','shopped'],['arrive','arrived'],['clean','cleaned'],['chat','chatted'],['worry','worried'],['use','used'],['drop','dropped']].map(v=>T(v[0],v[1])));
+const C=(q,a,w1,w2)=>({q,a:[a],o:[a,w1,w2]});
+Quiz($('#q2'),[
+ C('Yesterday I ___ a film. (watch)','watched','watchd','watching'),
+ C('She ___ in London in 2018. (live)','lived','livved','lives'),
+ C('We ___ the bus at 8:00. (stop)','stopped','stoped','stopeed'),
+ C('He ___ hard for the test. (study)','studied','studyed','studed'),
+ C('They ___ their grandparents last week. (visit)','visited','visit','visitted'),
+ C('I ___ like pizza when I was five. (not)',"didn't",'doesn’t','wasn’t'),
+ C('___ you play football yesterday?','Did','Do','Does'),
+ C('She didn’t ___ the door. (open)','open','opened','opens'),C('We ___ to music all evening. (listen)','listened','listenned','listen'),C('The film ___ at nine. (start)','started','startted','start'),C('___ he cook dinner last night?','Did','Does','Was'),C('I ___ my phone on the bus. (drop)','dropped','droped','dropt'),C('They didn’t ___ the answer. (know)','know','knew','knowed'),C('She ___ her mum last night. (call)','called','calling','calles')]);
+
+/* ---------- irregular practice ---------- */
+const allI=gk.flatMap(k=>fam[k].v);
+(function(){const el=$('#m1');let pairs,sel,left;
+ function start(){pairs=sh(allI.filter(v=>!v[1].includes('/'))).slice(0,6);left=pairs.length;sel=null;
+  el.innerHTML=`<p class="center">Tap a base verb, then its past form.</p><div class="match"><div style="display:contents">${pairs.map(p=>`<button data-k="${p[0]}" data-s="b">${p[0]}</button>`).join('')}</div>${sh(pairs).map(p=>`<button data-k="${p[0]}" data-s="p">${p[1]}</button>`).join('')}</div><div class="fb"></div>`;
+  el.querySelector('.match').onclick=e=>{const b=e.target;if(b.tagName!=='BUTTON'||b.classList.contains('done'))return;
+   if(!sel||sel.dataset.s===b.dataset.s){if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');return}
+   if(sel.dataset.k===b.dataset.k){sel.className=b.className='done';addXP(5);say(sel.dataset.s==='p'?sel.textContent:b.textContent);sel=null;if(!--left){el.querySelector('.fb').innerHTML='🎉 All matched! <button class="btn" id="mr2">Play again</button>';$('#mr2').onclick=start}}
+   else{const a=sel;b.classList.add('bad');a.classList.remove('sel');a.classList.add('bad');setTimeout(()=>{a.classList.remove('bad');b.classList.remove('bad')},500);sel=null}}}
+ start()})();
+Quiz($('#q3'),allI.map(v=>({q:`<small>Yesterday…</small><br>${v[0]} → ?`,a:v[1].split(' / ')})).sort(()=>Math.random()-.5).slice(0,15));
+Quiz($('#q4'),[
+ C('Last summer we ___ to Spain. (go)','went','goed','gone'),
+ C('I ___ a great book last week. (read)','read','readed','reads'),
+ C('She ___ me a present for my birthday. (give)','gave','gived','given'),
+ C('They ___ pizza for dinner last night. (eat)','ate','eated','eaten'),
+ C('He ___ his keys yesterday. (lose)','lost','losed','lose'),
+ C('We ___ a new car in May. (buy)','bought','buyed','boughted'),
+ C('I ___ see Anna at school. (not)',"didn't",'doesn’t','didn’t saw'),
+ C('___ you ___ your homework? (do)','Did / do','Did / did','Do / did'),
+ C('My sister ___ a letter to me. (write)','wrote','writed','written'),
+ C('They ___ very happy yesterday. (be)','were','was','are'),C('I ___ my keys yesterday. (lose)','lost','losed','loosed'),C('She ___ for ten hours. (sleep)','slept','sleeped','slept up'),C('We ___ a lot of money last week. (spend)','spent','spended','spenned'),C('He ___ the car to Milan. (drive)','drove','drived','driven'),C('What time ___ you get up? ','did','were','have')]);
+
+/* ---- extra practice ---- */
+const SP=(v,a,w1,w2)=>C(`Which spelling is correct? <b>${v}</b>`,a,w1,w2);
+Quiz($('#q5'),[SP('study','studied','studyed','studdied'),SP('stop','stopped','stoped','stopt'),SP('like','liked','likeed','likd'),SP('carry','carried','carryed','carred'),SP('plan','planned','planed','plannd'),SP('dance','danced','danceed','dancd'),SP('cry','cried','cryed','criyed'),SP('shop','shopped','shoped','shopedd'),SP('play','played','plaied','plad'),SP('worry','worried','worryed','worred')]);
+const S=(w,a)=>({q:`How do we say <b>${w}</b>? <span class="say" onclick="say('${w}')">listen</span>`,a:[a],o:['/t/','/d/','/ɪd/']});
+Quiz($('#q6'),[S('walked','/t/'),S('watched','/t/'),S('helped','/t/'),S('cooked','/t/'),S('washed','/t/'),S('played','/d/'),S('cleaned','/d/'),S('listened','/d/'),S('lived','/d/'),S('stayed','/d/'),S('wanted','/ɪd/'),S('started','/ɪd/'),S('visited','/ɪd/'),S('needed','/ɪd/'),S('decided','/ɪd/')]);
+const NG=(full,gap,v)=>({q:`<small>Make it negative: didn't + verb</small><br>${full}<br>${gap}`,a:["didn't "+v,"did not "+v]});
+Quiz($('#q7'),[NG('I played tennis.','I ___ tennis.','play'),NG('She watched TV.','She ___ TV.','watch'),NG('They cleaned the car.','They ___ the car.','clean'),NG('We visited Rome.','We ___ Rome.','visit'),NG('He studied French.','He ___ French.','study'),NG('You liked the film.','You ___ the film.','like')]);
+Quiz($('#q8'),[NG('She went home.','She ___ home.','go'),NG('I ate breakfast.','I ___ breakfast.','eat'),NG('They bought a car.','They ___ a car.','buy'),NG('He saw the match.','He ___ the match.','see'),NG('We had lunch.','We ___ lunch.','have'),NG('I wrote a letter.','I ___ a letter.','write'),NG('She met Tom.','She ___ Tom.','meet'),NG('He took a taxi.','He ___ a taxi.','take')]);
+/* ---- boss level ---- */
+const W=(a,b,c)=>C('Which sentence is correct?',a,b,c);
+Quiz($('#q9'),[W('I went to school yesterday.','I goed to school yesterday.','I did went to school yesterday.'),W("She didn't like the film.","She didn't liked the film.",'She not liked the film.'),W('Did you see my phone?','Did you saw my phone?','Do you saw my phone?'),W('We played football last Sunday.','We play football last Sunday.','We playd football last Sunday.'),W('He studied all night.','He studyed all night.','He studdied all night.'),W("They didn't have breakfast.","They didn't had breakfast.","They hadn't breakfast."),W('What did you eat?','What you ate?','What did you ate?'),W('I bought a bag two days ago.','I buyed a bag two days ago.','I buy a bag two days ago.')]);
+function Build(el,items){let list,i,s,tray,line,locked;
+ const start=()=>{list=sh(items);i=0;s=0;locked=false;next()};
+ function next(){if(i>=list.length){el.innerHTML=`<div class="res"><h2>${s}/${list.length}</h2><p>${s==list.length?'🏆 Perfect word order!':'Good effort. Try again!'}</p><button class="btn" id="rb">Try again</button></div>`;el.querySelector('#rb').onclick=start;return}
+  tray=sh(list[i].split(' ').map((t,k)=>({t,k})));line=[];draw("")}
+ function draw(m){el.innerHTML=`<div class="bar"><i style="width:${i/list.length*100}%"></i></div><p class="q">🧩 Tap the words in the right order</p><div class="line">${line.map(w=>`<button class="tw" data-k="${w.k}" data-f="l">${w.t}</button>`).join('')}</div><div class="center">${tray.map(w=>`<button class="tw" data-k="${w.k}" data-f="t">${w.t}</button>`).join('')}</div><div class="center"><button class="btn chk">Check</button></div><div class="fb">${m}</div>`}
+ el.onclick=e=>{const b=e.target;if(locked)return;
+  if(b.classList.contains('chk')){const ok=line.map(w=>w.t).join(' ')===list[i];locked=true;if(ok){s++;addXP(15)}draw(ok?'✅ Perfect! +15 XP':`❌ Correct: <b>${list[i]}</b>`);const n=document.createElement('button');n.className='btn';n.textContent='Next';n.onclick=()=>{i++;locked=false;next()};el.querySelector('.fb').after(n);return}
+  if(!b.classList.contains('tw'))return;const k=+b.dataset.k,from=b.dataset.f==='t'?tray:line,to=from===tray?line:tray;to.push(...from.splice(from.findIndex(w=>w.k===k),1));draw("")};
+ start()}
+Build($('#b1'),['We played football in the park yesterday.',"She didn't buy any milk.",'Did you see the match last night?','They arrived at the hotel two hours ago.',"I didn't eat breakfast this morning.",'He wrote a long letter to his friend.','Where did you go last summer?','My sister studied French for three years.']);
+const QS=(s,a)=>({q:`<small>Make a question. Start with Did.</small><br>${s}`,a:[a]});
+Quiz($('#q10'),[QS('You watched TV last night.','did you watch tv last night'),QS('She ate pizza.','did she eat pizza'),QS('They went to Rome.','did they go to rome'),QS('He played tennis on Sunday.','did he play tennis on sunday'),QS('You bought a new phone.','did you buy a new phone'),QS('Your sister called you.','did your sister call you')]);
+const ST=(s,a)=>({q:s,a:[a]});
+Quiz($('#q11'),[ST('Last Saturday I ___ up at nine. (wake)','woke'),ST('I ___ a big breakfast with my family. (have)','had'),ST('Then we ___ to the market. (go)','went'),ST('We ___ some fresh fruit. (buy)','bought'),ST('On the way, I ___ my old teacher. (meet)','met'),ST('He ___ me a lot of questions. (ask)','asked'),ST('In the afternoon I ___ my room. (clean)','cleaned'),ST('My friends ___ at six. (arrive)','arrived'),ST('We ___ pizza together. (eat)','ate'),ST('Later we ___ a film. (watch)','watched'),ST('My cousin ___ me home by car. (take)','took'),ST('I ___ very tired and went to bed. (be)','was')]);
+const RI=v=>({q:`Is <b>${v[0]}</b> regular or irregular?`,a:[v[1]],o:['Regular','Irregular']});
+Quiz($('#q12'),['walk','play','study','stop','visit','like','clean','cook'].map(v=>RI([v,'Regular'])).concat(['go','eat','buy','see','have','make','come','write','take','swim'].map(v=>RI([v,'Irregular']))));
+</script>
+</body>
+</html>

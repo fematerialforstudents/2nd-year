@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emotions & Feelings – Flashcards</title>
+<style>
+:root{--bg:#faf6f1;--card:#fff;--ink:#2a2230;--mute:#7a6f80;--acc:#b4415f;--acc2:#e8c9d2;--ok:#2f8f5b;--no:#c0502f;--line:#e5dcd3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1620;--card:#271f2e;--ink:#f3ecf5;--mute:#a99db0;--acc:#e07a97;--acc2:#4a2f3b;--ok:#5fc98c;--no:#ee8a66;--line:#3a3042;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--mute);font-family:system-ui,sans-serif;font-size:.9rem;margin:0 0 16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-family:system-ui,sans-serif}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:.85rem}
+button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.prog{font-family:system-ui,sans-serif;font-size:.85rem;color:var(--mute);display:flex;justify-content:space-between;margin:6px 0 8px}
+.track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.fill{height:100%;background:var(--acc);width:0;transition:width .3s}
+.scene{perspective:1000px;height:320px;margin-bottom:16px}
+.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.back{transform:rotateY(180deg)}
+.tag{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);background:var(--acc2);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+.word{font-size:2.3rem;font-weight:700;margin:0}
+.pos{color:var(--mute);font-style:italic;margin-top:6px}
+.hint{position:absolute;bottom:12px;font-family:system-ui,sans-serif;font-size:.75rem;color:var(--mute)}
+.big{font-size:1.9rem;font-weight:700;margin:0 0 4px;color:var(--acc)}
+.ex{font-style:italic;line-height:1.4;margin-top:12px}
+.exit{font-family:system-ui,sans-serif;font-size:.85rem;color:var(--mute);margin-top:6px;line-height:1.4}
+.act{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-family:system-ui,sans-serif}
+.act button{border-radius:12px;padding:14px;font-size:.95rem;font-weight:600}
+.no{color:var(--no);border-color:var(--no)}.ok{color:var(--ok);border-color:var(--ok)}
+.nav{display:flex;justify-content:space-between;margin-top:12px;font-family:system-ui,sans-serif}
+.done{text-align:center;padding:40px 10px;font-family:system-ui,sans-serif}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;font-family:system-ui,sans-serif}.chips button{padding:6px 11px;min-width:36px}
+.et{font-size:1.25rem;margin:0}.step{font-family:system-ui,sans-serif;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin:2px 0 6px}.ei{margin:0 0 10px;font-weight:700}
+.note{font-family:system-ui,sans-serif;font-size:.85rem;background:var(--acc2);border-radius:10px;padding:10px 12px;margin-bottom:12px;line-height:1.4}
+.it{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}.q{margin-bottom:8px;line-height:1.4}.bl{color:var(--acc)}
+.opts,.fr{display:flex;gap:8px;flex-wrap:wrap;font-family:system-ui,sans-serif}.opts button.good{background:var(--ok);color:#fff;border-color:var(--ok)}.opts button.bad{background:var(--no);color:#fff;border-color:var(--no)}
+.fr input{flex:1;min-width:120px;font:inherit;font-size:.95rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.res{font-family:system-ui,sans-serif;font-size:.9rem;margin-top:8px}.res.good{color:var(--ok)}.res.bad{color:var(--no)}.res.ans{color:var(--acc);font-weight:600}
+.it>button{font-family:system-ui,sans-serif}.foot{align-items:center;margin-top:14px}.sc{margin-left:auto;color:var(--mute);font-size:.85rem}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<h1>Emotions &amp; Feelings</h1>
+<div class="bar" id="tabs"></div>
+<div id="fc"><p class="sub">35 parole · livello A1–A2 verso B1 · tocca la carta per girarla</p>
+<div class="bar" id="modes"></div>
+<div class="bar" id="filters"></div>
+<div class="prog"><span id="count"></span><span id="score"></span></div>
+<div class="track"><div class="fill" id="fill"></div></div>
+<div id="stage"></div>
+<div class="nav"><button id="prev">← Indietro</button><button id="shuf">Mescola</button><button id="next">Avanti →</button></div></div>
+<div id="ex" hidden></div>
+</main>
+<script>
+// [english, category, part of speech, italian, example EN, example IT, level]
+var D=[
+["laugh","Actions","verb","ridere","We laugh a lot with our friends.","Ridiamo molto con i nostri amici.","A1"],
+["cry","Actions","verb","piangere","The baby is crying.","Il bambino sta piangendo.","A1"],
+["shout","Actions","verb","gridare","Please don’t shout. I’m here!","Per favore non gridare. Sono qui!","A2"],
+["joke","Actions","verb / noun","scherzare; battuta","He often jokes with the teacher.","Scherza spesso con l’insegnante.","A2"],
+["pout","Actions","verb","fare il broncio","She pouts when she can’t have an ice cream.","Fa il broncio quando non può avere un gelato.","B2"],
+["happy","Feelings","adjective","felice","I’m happy today.","Oggi sono felice.","A1"],
+["sad","Feelings","adjective","triste","He is sad because his friend moved away.","È triste perché il suo amico si è trasferito.","A1"],
+["angry","Feelings","adjective","arrabbiato","My mum is angry with me.","Mia mamma è arrabbiata con me.","A1"],
+["tired","Feelings","adjective","stanco","I’m tired after school.","Sono stanco dopo la scuola.","A1"],
+["bored","Feelings","adjective","annoiato","I’m bored. There is nothing to do.","Mi annoio. Non c’è niente da fare.","A1"],
+["scared","Feelings","adjective","che ha paura","I’m scared of dogs.","Ho paura dei cani.","A2"],
+["worried","Feelings","adjective","preoccupato","She is worried about the test.","È preoccupata per il compito.","A2"],
+["nervous","Feelings","adjective","nervoso, agitato","I’m nervous before a speaking test.","Sono agitato prima di un esame orale.","A2"],
+["excited","Feelings","adjective","emozionato, entusiasta","We’re excited about the trip.","Siamo entusiasti per la gita.","A2"],
+["surprised","Feelings","adjective","sorpreso","I was surprised to see him.","Sono rimasto sorpreso di vederlo.","A2"],
+["shy","Feelings","adjective","timido","The new boy is shy.","Il ragazzo nuovo è timido.","A2"],
+["proud","Feelings","adjective","orgoglioso","My parents are proud of me.","I miei genitori sono orgogliosi di me.","A2"],
+["lonely","Feelings","adjective","solo, solitario","She feels lonely in the new city.","Si sente sola nella nuova città.","A2"],
+["confused","Feelings","adjective","confuso","I’m confused. What do I do?","Sono confuso. Cosa devo fare?","A2"],
+["calm","Feelings","adjective","calmo","Stay calm. Everything is OK.","Stai calmo. Va tutto bene.","A2"],
+["relaxed","Feelings","adjective","rilassato","I feel relaxed on holiday.","Mi sento rilassato in vacanza.","A2"],
+["curious","Feelings","adjective","curioso","The children are curious about the box.","I bambini sono curiosi riguardo alla scatola.","A2"],
+["jealous","Feelings","adjective","geloso","He is jealous of his brother.","È geloso di suo fratello.","B1"],
+["embarrassed","Feelings","adjective","in imbarazzo","I was embarrassed when I forgot her name.","Ero in imbarazzo quando ho dimenticato il suo nome.","B1"],
+["upset","Feelings","adjective","turbato, dispiaciuto","She is upset because she lost her phone.","È dispiaciuta perché ha perso il telefono.","B1"],
+["disappointed","Feelings","adjective","deluso","I’m disappointed with my result.","Sono deluso dal mio risultato.","B1"],
+["relieved","Feelings","adjective","sollevato","I’m relieved. The test is over!","Sono sollevato. Il compito è finito!","B1"],
+["stressed","Feelings","adjective","stressato","He feels stressed before exams.","Si sente stressato prima degli esami.","B1"],
+["cheerful","Feelings","adjective","allegro, di buon umore","Our teacher is always cheerful.","La nostra insegnante è sempre di buon umore.","B1"],
+["annoyed","Feelings","adjective","infastidito, seccato","I’m annoyed. The bus is late again.","Sono seccato. L’autobus è di nuovo in ritardo.","B1"],
+["frightened","Feelings","adjective","spaventato","The child was frightened of the dark.","Il bambino era spaventato dal buio.","B1"],
+["terrified","Feelings","adjective","terrorizzato","She is terrified of flying.","Ha il terrore di volare.","B1"],
+["guilty","Feelings","adjective","in colpa","I feel guilty about the lie.","Mi sento in colpa per la bugia.","B1"],
+["hopeful","Feelings","adjective","fiducioso, speranzoso","We are hopeful about the future.","Siamo fiduciosi riguardo al futuro.","B1"],
+["homesick","Feelings","adjective","nostalgico di casa","I feel homesick abroad.","Mi manca casa quando sono all’estero.","B1"]
+];
+var cat="All",mode="en",deck=[],i=0,flipped=false,known={},st=document.getElementById("stage");
+function pool(){return D.filter(function(c){return cat==="All"||c[1]===cat||(cat==="Review"&&known[c[0]]===false)})}
+function build(shuffle){deck=pool().slice();if(shuffle){for(var k=deck.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=deck[k];deck[k]=deck[j];deck[j]=t}}i=0;flipped=false;render()}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){
+ var kn=Object.keys(known).filter(function(k){return known[k]}).length;
+ document.getElementById("score").textContent="Sapute: "+kn+" / "+D.length;
+ if(!deck.length){st.innerHTML='<div class="done">Nessuna carta in questa selezione.</div>';document.getElementById("count").textContent="";document.getElementById("fill").style.width="0";return}
+ var c=deck[i],en=mode==="en";
+ var front=en?'<p class="word">'+esc(c[0])+'</p><div class="pos">'+esc(c[2])+'</div>':'<p class="word">'+esc(c[3])+'</p>';
+ var back=(en?'<p class="big">'+esc(c[3])+'</p>':'<p class="big">'+esc(c[0])+'</p><div class="pos">'+esc(c[2])+'</div>')+'<div class="ex">“'+esc(c[4])+'”</div><div class="exit">'+esc(c[5])+'</div>';
+ document.getElementById("count").textContent="Carta "+(i+1)+" di "+deck.length;
+ document.getElementById("fill").style.width=((i+1)/deck.length*100)+"%";
+ st.innerHTML='<div class="scene"><div class="card'+(flipped?' flip':'')+'" id="card">'+
+ '<div class="face"><span class="tag">'+c[1]+' · '+c[6]+'</span>'+front+'<span class="hint">Tocca per girare</span></div>'+
+ '<div class="face back"><span class="tag">'+c[1]+' · '+c[6]+'</span>'+back+'</div></div></div>'+
+ '<div class="act"><button class="no" id="no">Da rivedere</button><button class="ok" id="yes">Lo so</button></div>';
+ document.getElementById("card").onclick=flip;
+ document.getElementById("no").onclick=function(){known[c[0]]=false;go(1)};
+ document.getElementById("yes").onclick=function(){known[c[0]]=true;go(1)};
+}
+function flip(){flipped=!flipped;var el=document.getElementById("card");if(el)el.classList.toggle("flip",flipped)}
+function go(d){if(!deck.length)return;i=(i+d+deck.length)%deck.length;flipped=false;render()}
+document.getElementById("prev").onclick=function(){go(-1)};
+document.getElementById("next").onclick=function(){go(1)};
+document.getElementById("shuf").onclick=function(){build(true)};
+document.addEventListener("keydown",function(e){if(view!=="fc"||/INPUT|TEXTAREA/.test(e.target.tagName))return;if(e.key==="ArrowRight")go(1);else if(e.key==="ArrowLeft")go(-1);else if(e.key===" "){e.preventDefault();flip()}});
+function chips(id,list,get,set){var box=document.getElementById(id);list.forEach(function(f){var b=document.createElement("button");b.textContent=f[1];b.className=f[0]===get()?"on":"";b.onclick=function(){set(f[0]);Array.prototype.forEach.call(box.children,function(x){x.className=""});b.className="on"};box.appendChild(b)})}
+chips("modes",[["en","English → Italiano"],["it","Italiano → English"]],function(){return mode},function(v){mode=v;build(false)});
+chips("filters",[["All","Tutte"],["Actions","Azioni"],["Feelings","Emozioni"],["Review","Da rivedere"]],function(){return cat},function(v){cat=v;build(false)});
+build(false);
+var view="fc",cur=0,exS={};
+// [step, instruction, kind (c=choice, f=typed, r=reveal), options, note, items[[prompt, answer]]]
+var E=[
+["Step 1 · Le parole","Traduci in italiano.","f",0,"",[["happy","felice"],["sad","triste"],["angry","arrabbiato|arrabbiata|arrabbiati"],["tired","stanco|stanca|stanchi"],["bored","annoiato|annoiata|annoiati"],["scared","che ha paura|impaurito|spaventato|impaurita"],["shy","timido|timida"],["proud","orgoglioso|orgogliosa"],["worried","preoccupato|preoccupata"],["excited","emozionato|entusiasta|eccitato|emozionata"]]],
+["Step 1 · Le parole","Traduci in inglese.","f",0,"",[["ridere","laugh"],["piangere","cry"],["gridare","shout"],["scherzare","joke"],["fare il broncio","pout"],["nervoso","nervous"],["sorpreso","surprised"],["solo, solitario","lonely"]]],
+["Step 2 · Ripasso present","Completa con am, is o are.","c",["am","is","are"],"am → I · is → he / she / it · are → you / we / they",[["I ___ happy today.","am"],["She ___ tired after school.","is"],["We ___ bored in the car.","are"],["My brother ___ nervous before the test.","is"],["You ___ very shy.","are"],["The children ___ excited.","are"],["He ___ scared of dogs.","is"],["My parents ___ proud of me.","are"]]],
+["Step 2 · Ripasso present","Traduci in inglese.","r",0,"",[["Sono felice.","I am happy."],["Lei è stanca.","She is tired."],["Siamo annoiati.","We are bored."],["Loro sono preoccupati.","They are worried."],["Tu sei timido.","You are shy."],["Lui è arrabbiato con me.","He is angry with me."]]],
+["Step 2 · Ripasso present","Trasforma: prime tre negative, ultime tre domande.","r",0,"",[["I am sad. (negativa)","I am not sad."],["He is nervous. (negativa)","He isn’t nervous."],["They are calm. (negativa)","They aren’t calm."],["You are tired. (domanda)","Are you tired?"],["She is angry. (domanda)","Is she angry?"],["They are excited. (domanda)","Are they excited?"]]],
+["Step 3 · Novità: past di to be","Today / Yesterday. Completa con was o were.","c",["was","were"],"Regola: am / is → was · are → were. Segnali: yesterday, last night, last week, two days ago.",[["Today I am happy. Yesterday I ___ sad.","was"],["Today she is calm. Yesterday she ___ nervous.","was"],["Today we are relaxed. Yesterday we ___ stressed.","were"],["Today he is cheerful. Yesterday he ___ upset.","was"],["Today you are proud. Yesterday you ___ disappointed.","were"],["Today they are calm. Yesterday they ___ scared.","were"]]],
+["Step 3 · Novità: past di to be","Riscrivi al passato con Yesterday.","r",0,"",[["I am tired.","Yesterday I was tired."],["She is bored.","Yesterday she was bored."],["We are excited.","Yesterday we were excited."],["He is lonely.","Yesterday he was lonely."],["They are worried.","Yesterday they were worried."],["You are surprised.","Yesterday you were surprised."],["The kids are curious.","Yesterday the kids were curious."],["My mum is angry.","Yesterday my mum was angry."]]],
+["Step 4 · Was / were","Scegli la forma giusta.","c",["was","were"],"",[["I ___ scared in the dark last night.","was"],["They ___ jealous of their friend.","were"],["My sister ___ embarrassed at the party.","was"],["We ___ relieved after the exam.","were"],["You ___ confused in the lesson.","were"],["The teacher ___ disappointed.","was"],["The boys ___ frightened.","were"],["He ___ homesick last week.","was"]]],
+["Step 4 · Was / were","Negativa: wasn’t o weren’t?","c",["wasn’t","weren’t"],"",[["I ___ angry. It was a joke!","wasn’t"],["She ___ nervous. She was calm.","wasn’t"],["We ___ bored. The film was great.","weren’t"],["The students ___ worried.","weren’t"],["You ___ guilty. It wasn’t your fault.","weren’t"],["He ___ terrified. He was only a little scared.","wasn’t"]]],
+["Step 4 · Was / were","Domande: metti le parole in ordine.","r",0,"",[["you / Were / tired / yesterday ?","Were you tired yesterday?"],["Was / happy / she ?","Was she happy?"],["they / Were / surprised ?","Were they surprised?"],["Was / stressed / he / before the exam ?","Was he stressed before the exam?"],["Were / disappointed / you / with the result ?","Were you disappointed with the result?"],["Was / lonely / your grandmother ?","Was your grandmother lonely?"]]],
+["Step 4 · Was / were","Risposte brevi (✓ = sì, ✗ = no).","r",0,"",[["Was she angry? ✓","Yes, she was."],["Were they bored? ✗","No, they weren’t."],["Was he scared? ✗","No, he wasn’t."],["Were you nervous? (rispondi tu)","Yes, I was. / No, I wasn’t."]]],
+["Step 5 · Traduzione al passato","Traduci in inglese.","r",0,"",[["Ieri ero stanco.","Yesterday I was tired."],["Lei era felice.","She was happy."],["Eravamo preoccupati.","We were worried."],["Non ero nervoso.","I wasn’t nervous."],["Loro erano in imbarazzo.","They were embarrassed."],["Eri deluso?","Were you disappointed?"],["Mio fratello non era geloso.","My brother wasn’t jealous."],["Il bambino era spaventato.","The child was frightened."]]],
+["Step 5 · Traduzione al passato","Traduci in italiano.","r",0,"",[["Were you scared last night?","Avevi paura / Eri spaventato ieri sera?"],["We weren’t bored.","Non eravamo annoiati."],["She was relieved.","Era sollevata."],["They were terrified.","Erano terrorizzati."]]],
+["Step 6 · Presente o passato?","Guarda il segnale di tempo!","c",["am","is","are","was","were"],"",[["Right now, I ___ calm.","am"],["Last night, we ___ stressed.","were"],["Today, my sister ___ proud of me.","is"],["Last week, he ___ homesick.","was"],["Yesterday, they ___ cheerful all day.","were"],["At the moment, you ___ shy.","are"],["Two days ago, I ___ jealous.","was"],["Now, the kids ___ excited.","are"]]],
+["Step 6 · Presente o passato?","Bonus verso il B1: completa il testo.","c",["am","is","are","was","were"],"Shouted, cried, pouted, joked, laughed sono il past di shout, cry, pout, joke, laugh (-ed; cry → cried). Per ora basta riconoscerli.",[["Yesterday ___ a bad day.","was"],["In the morning I ___ tired and angry.","was"],["My little brother ___ in my room. I shouted at him and he cried.","was"],["Then my mum ___ upset,","was"],["and I ___ very guilty. He pouted all morning.","was"],["In the afternoon my friends ___ at my house.","were"],["We ___ happy again: we joked and laughed a lot.","were"],["In the evening I ___ relaxed.","was"]]],
+["Step 6 · Presente o passato?","Scrivi.","r",0,"",[["Scrivi 5 frasi su ieri con was / were / wasn’t / weren’t e 5 parole diverse tra emozioni e sentimenti. Una frase deve essere una domanda.","Risposta libera: controlla la scelta di was/were rispetto al soggetto e la domanda (Was/Were + soggetto)."]]]
+];
+var ex=document.getElementById("ex");
+function esa(s){return esc(s).replace(/"/g,"&quot;")}
+function key(j){return cur+"-"+j}
+function norm(s){return s.toLowerCase().replace(/\s+/g," ").trim()}
+function drawEx(){
+ var e=E[cur],h="",good=0,tot=0,auto=e[2]!=="r";
+ h+='<div class="chips">'+E.map(function(x,n){return '<button data-n="'+n+'" class="'+(n===cur?"on":"")+'">'+(n+1)+'</button>'}).join("")+'</div>';
+ h+='<h2 class="et">Esercizio '+(cur+1)+'</h2><div class="step">'+e[0]+'</div><p class="ei">'+e[1]+'</p>'+(e[4]?'<div class="note">'+esc(e[4])+'</div>':"");
+ e[5].forEach(function(q,j){
+  var s=exS[key(j)]||{},p=esc(q[0]);
+  h+='<div class="it">';
+  if(e[2]==="c"){
+   tot++;if(s.v===q[1]&&!s.sh)good++;
+   p=p.replace("___",'<b class="bl">'+(s.v?esc(s.v):"____")+'</b>');
+   h+='<div class="q">'+(j+1)+'. '+p+'</div><div class="opts">'+e[3].map(function(o){var c="";if(s.v){if(o===q[1])c="good";else if(o===s.v)c="bad"}return '<button data-c="'+j+'" data-o="'+esa(o)+'" class="'+c+'">'+esc(o)+'</button>'}).join("")+'</div>';
+  }else if(e[2]==="f"){
+   tot++;if(s.ok===true)good++;
+   h+='<div class="q">'+(j+1)+'. '+p+'</div><div class="fr"><input data-i="'+j+'" value="'+(s.v?esa(s.v):"")+'" autocomplete="off" autocapitalize="off"><button data-k="'+j+'">Controlla</button></div>';
+   if(s.ok===true)h+='<div class="res good">✓ '+esc(q[1].split("|")[0])+'</div>';
+   else if(s.ok===false)h+='<div class="res bad">✗ Riprova, oppure mostra la risposta</div>';
+   else if(s.ok==="s")h+='<div class="res ans">'+esc(q[1].split("|")[0])+'</div>';
+  }else{
+   h+='<div class="q">'+(j+1)+'. '+p+'</div>'+(s.shown?'<div class="res ans">'+esc(q[1])+'</div>':'<button data-r="'+j+'">Mostra risposta</button>');
+  }
+  h+='</div>';
+ });
+ h+='<div class="bar foot"><button data-all="1">Mostra tutte le risposte</button><button data-reset="1">Azzera</button>'+(auto?'<span class="sc">Corrette: '+good+' / '+tot+'</span>':"")+'</div>';
+ var y=window.scrollY;ex.innerHTML=h;window.scrollTo(0,y);
+}
+function saveDrafts(){ex.querySelectorAll("input").forEach(function(i){var k=key(i.dataset.i),s=exS[k];if(!s||s.ok===undefined||s.ok===false)exS[k]={v:i.value}})}
+ex.addEventListener("click",function(ev){
+ var b=ev.target.closest("button");if(!b)return;
+ saveDrafts();var d=b.dataset,e=E[cur];
+ if(d.n!==undefined){cur=+d.n}
+ else if(d.c!==undefined){var k=key(d.c);if(!exS[k]||!exS[k].v)exS[k]={v:d.o}}
+ else if(d.k!==undefined){var j=+d.k,s=exS[key(j)]||{v:""};exS[key(j)]={v:s.v,ok:e[5][j][1].split("|").indexOf(norm(s.v||""))>-1}}
+ else if(d.r!==undefined){exS[key(d.r)]={shown:1}}
+ else if(d.all){e[5].forEach(function(q,j){exS[key(j)]=e[2]==="c"?{v:q[1],sh:1}:e[2]==="f"?{v:q[1].split("|")[0],ok:"s"}:{shown:1}})}
+ else if(d.reset){e[5].forEach(function(q,j){delete exS[key(j)]})}
+ drawEx();
+});
+ex.addEventListener("keydown",function(ev){if(ev.key==="Enter"&&ev.target.tagName==="INPUT"){ev.preventDefault();var b=ex.querySelector('button[data-k="'+ev.target.dataset.i+'"]');if(b)b.click()}});
+function setView(v){view=v;document.getElementById("fc").hidden=v!=="fc";ex.hidden=v!=="ex";if(v==="ex")drawEx()}
+chips("tabs",[["fc","Flashcard"],["ex","Esercizi"]],function(){return view},setView);
+</script>
+</body>
+</html>

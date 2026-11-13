@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Irregular Verbs – Study by Pattern</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fbf7ee;--card:#fff;--tx:#1d2733;--mu:#5d6b7a;--ac:#1565c0;--ln:#e3dccb;--ok:#2e7d32;--no:#c62828}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15191f;--card:#1f252d;--tx:#eef1f4;--mu:#9aa7b4;--ac:#6fb1ff;--ln:#323b46;--ok:#6fcf7a;--no:#ff8a80}}
+:root[data-theme="dark"]{--bg:#15191f;--card:#1f252d;--tx:#eef1f4;--mu:#9aa7b4;--ac:#6fb1ff;--ln:#323b46;--ok:#6fcf7a;--no:#ff8a80}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;padding:8px}
+h1{font-size:1.2rem;margin:4px 0 10px}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:9px 14px;cursor:pointer}
+button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.g{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:10px 8px;margin-bottom:10px}
+.g h2{font-size:1rem;margin:0 0 2px;color:var(--ac)}
+.g p{margin:0 0 8px;color:var(--mu);font-size:.85rem}
+.r,.hd{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;overflow-wrap:anywhere}
+.r{padding:6px 0;border-top:1px solid var(--ln);font-size:.9rem}
+.r i{display:block;font-style:normal;color:var(--mu);font-size:.7rem}
+.r .it{color:var(--ac);font-size:.85rem}
+.hd{font-size:.68rem;color:var(--mu);text-transform:uppercase;margin-bottom:2px}
+.cov .h{background:var(--ln);border-radius:4px}
+.cov .h b,.cov .h i{color:transparent;user-select:none}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(--ln);background:var(--card);color:var(--tx);max-width:100%}
+.fc{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:22px 12px;text-align:center;min-height:200px}
+.fc .b{font-size:2rem;font-weight:800}.fc .ip{color:var(--mu)}.fc .i{color:var(--ac);margin:6px 0 12px;font-size:1.1rem}
+.fc .a{font-size:1.2rem;margin-top:10px}.fc .a i{font-style:normal;color:var(--mu);font-size:.95rem}
+.row{display:flex;gap:10px;margin-top:12px}.row button{flex:1;padding:14px}
+.ok{border-color:var(--ok);color:var(--ok)}.no{border-color:var(--no);color:var(--no)}
+.pr{color:var(--mu);font-size:.9rem;margin:8px 0;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.chips label{border:1px solid var(--ln);background:var(--card);border-radius:16px;padding:5px 10px;font-size:.85rem;cursor:pointer}.chips input{margin-right:4px}.covb .hb{background:var(--ln);border-radius:4px}.covb .hb b,.covb .hb i{color:transparent;user-select:none}.covit .hi{background:var(--ln);border-radius:4px;color:transparent;user-select:none}.r .hid{background:var(--ln);border-radius:4px;color:transparent;user-select:none}.r .hid b,.r .hid i{color:transparent}#t1{border:2px solid #1565c0;color:#1565c0;font-weight:600}#t1.on{background:#1565c0;color:#fff}#t2{border:2px solid #c2410c;color:#c2410c;font-weight:600}#t2.on{background:#c2410c;color:#fff}@media (prefers-color-scheme:dark){#t1:not(.on){color:#6fb1ff;border-color:#6fb1ff}#t2:not(.on){color:#ffab40;border-color:#ffab40}}</style></head><body>
+<h1>Irregular verbs – study by pattern</h1>
+<div class="tabs"><button id="t1" class="on">1 · Patterns</button><button id="t2">2 · Practice</button></div>
+<div id="v1"></div>
+<div id="v2" hidden></div>
+<script>
+// verb;verb … each verb = base|ipa>past|ipa>participle|ipa>italiano
+var G=[
+["Same 3 forms (A-A-A)","Nothing changes! Careful: read is /red/ in past and participle.","bet|bet>bet|bet>bet|bet>scommettere;cost|kɒst>cost|kɒst>cost|kɒst>costare;cut|kʌt>cut|kʌt>cut|kʌt>tagliare;hit|hɪt>hit|hɪt>hit|hɪt>colpire;hurt|hɜːt>hurt|hɜːt>hurt|hɜːt>far male;let|let>let|let>let|let>lasciare, permettere;put|pʊt>put|pʊt>put|pʊt>mettere;read|riːd>read|red>read|red>leggere;set|set>set|set>set|set>impostare;shut|ʃʌt>shut|ʃʌt>shut|ʃʌt>chiudere;split|splɪt>split|splɪt>split|splɪt>dividere;spread|spred>spread|spred>spread|spred>diffondere;upset|ʌpˈset>upset|ʌpˈset>upset|ʌpˈset>turbare"],
+["Base = participle (A-B-A)","Only the past simple changes.","become|bɪˈkʌm>became|bɪˈkeɪm>become|bɪˈkʌm>diventare;come|kʌm>came|keɪm>come|kʌm>venire;run|rʌn>ran|ræn>run|rʌn>correre"],
+["-ought / -aught (sound /ɔːt/)","Past and participle are the same.","bring|brɪŋ>brought|brɔːt>brought|brɔːt>portare;buy|baɪ>bought|bɔːt>bought|bɔːt>comprare;catch|kætʃ>caught|kɔːt>caught|kɔːt>afferrare;fight|faɪt>fought|fɔːt>fought|fɔːt>combattere;teach|tiːtʃ>taught|tɔːt>taught|tɔːt>insegnare;think|θɪŋk>thought|θɔːt>thought|θɔːt>pensare"],
+["Ending in -t (A-B-B)","Long vowel becomes short, add -t.","feel|fiːl>felt|felt>felt|felt>sentire;keep|kiːp>kept|kept>kept|kept>tenere;sleep|sliːp>slept|slept>slept|slept>dormire;leave|liːv>left|left>left|left>partire, lasciare;mean|miːn>meant|ment>meant|ment>significare;lend|lend>lent|lent>lent|lent>prestare;send|send>sent|sent>sent|sent>mandare;spend|spend>spent|spent>spent|spent>spendere;build|bɪld>built|bɪlt>built|bɪlt>costruire;lose|luːz>lost|lɒst>lost|lɒst>perdere;deal|diːl>dealt|delt>dealt|delt>trattare"],
+["Two forms: -t or -ed","Both are correct (British -t, American -ed).","burn|bɜːn>burnt, burned|bɜːnt, bɜːnd>burnt, burned|bɜːnt, bɜːnd>bruciare;dream|driːm>dreamt, dreamed|dremt, driːmd>dreamt, dreamed|dremt, driːmd>sognare;learn|lɜːn>learnt, learned|lɜːnt, lɜːnd>learnt, learned|lɜːnt, lɜːnd>imparare;smell|smel>smelt, smelled|smelt, smeld>smelt, smelled|smelt, smeld>annusare;spell|spel>spelt, spelled|spelt, speld>spelt, spelled|spelt, speld>fare lo spelling;spill|spɪl>spilt, spilled|spɪlt, spɪld>spilt, spilled|spɪlt, spɪld>versare;spoil|spɔɪl>spoilt, spoiled|spɔɪlt, spɔɪld>spoilt, spoiled|spɔɪlt, spɔɪld>rovinare"],
+["Past = participle (other A-B-B)","Learn the pair: one form for both.","bleed|bliːd>bled|bled>bled|bled>sanguinare;lead|liːd>led|led>led|led>guidare;meet|miːt>met|met>met|met>incontrare;hold|həʊld>held|held>held|held>tenere;find|faɪnd>found|faʊnd>found|faʊnd>trovare;hear|hɪə(r)>heard|hɜːd>heard|hɜːd>sentire (udire);lay|leɪ>laid|leɪd>laid|leɪd>posare;pay|peɪ>paid|peɪd>paid|peɪd>pagare;say|seɪ>said|sed>said|sed>dire;sell|sel>sold|səʊld>sold|səʊld>vendere;tell|tel>told|təʊld>told|təʊld>raccontare;make|meɪk>made|meɪd>made|meɪd>fare;have|həv, hæv>had|həd, hæd>had|hæd>avere;hang|hæŋ>hung|hʌŋ>hung|hʌŋ>appendere;light|laɪt>lit|lɪt>lit|lɪt>accendere;shine|ʃaɪn>shone|ʃɒn>shone|ʃɒn>brillare;shoot|ʃuːt>shot|ʃɒt>shot|ʃɒt>sparare;sit|sɪt>sat|sæt>sat|sæt>sedersi;stand|stænd>stood|stʊd>stood|stʊd>stare in piedi;understand|ˌʌndəˈstænd>understood|ˌʌndəˈstʊd>understood|ˌʌndəˈstʊd>capire;stick|stɪk>stuck|stʌk>stuck|stʌk>attaccare;win|wɪn>won|wʌn>won|wʌn>vincere;get|get>got|gɒt>got, gotten (AmE)|gɒt, ˈgɒtn>ottenere"],
+["i – a – u","Like a music scale: i, a, u.","begin|bɪˈgɪn>began|bɪˈgæn>begun|bɪˈgʌn>iniziare;drink|drɪŋk>drank|dræŋk>drunk|drʌŋk>bere;ring|rɪŋ>rang|ræŋ>rung|rʌŋ>suonare;sing|sɪŋ>sang|sæŋ>sung|sʌŋ>cantare;sink|sɪŋk>sank|sæŋk>sunk|sʌŋk>affondare;swim|swɪm>swam|swæm>swum|swʌm>nuotare"],
+["-ew / -own","Past in -ew, participle in -own.","blow|bləʊ>blew|bluː>blown|bləʊn>soffiare;draw|drɔː>drew|druː>drawn|drɔːn>disegnare;fly|flaɪ>flew|fluː>flown|fləʊn>volare;grow|grəʊ>grew|gruː>grown|grəʊn>crescere;know|nəʊ>knew|njuː>known|nəʊn>sapere, conoscere;throw|θrəʊ>threw|θruː>thrown|θrəʊn>lanciare"],
+["-o- / -o-en","Past with o, participle in -en (or -orn).","break|breɪk>broke|brəʊk>broken|ˈbrəʊkən>rompere;speak|spiːk>spoke|spəʊk>spoken|ˈspəʊkən>parlare;steal|stiːl>stole|stəʊl>stolen|ˈstəʊlən>rubare;wake|weɪk>woke|wəʊk>woken|ˈwəʊkən>svegliarsi;choose|tʃuːz>chose|tʃəʊz>chosen|ˈtʃəʊzn>scegliere;freeze|friːz>froze|frəʊz>frozen|ˈfrəʊzn>congelare;wear|weə(r)>wore|wɔː(r)>worn|wɔːn>indossare"],
+["Participle in -en / -n","Add -en or -n to the participle.","bite|baɪt>bit|bɪt>bitten|ˈbɪtn>mordere;drive|draɪv>drove|drəʊv>driven|ˈdrɪvn>guidare;eat|iːt>ate|eɪt, et>eaten|ˈiːtn>mangiare;fall|fɔːl>fell|fel>fallen|ˈfɔːlən>cadere;forget|fəˈget>forgot|fəˈgɒt>forgotten|fəˈgɒtn>dimenticare;forgive|fəˈgɪv>forgave|fəˈgeɪv>forgiven|fəˈgɪvn>perdonare;give|gɪv>gave|geɪv>given|ˈgɪvn>dare;hide|haɪd>hid|hɪd>hidden|ˈhɪdn>nascondere;ride|raɪd>rode|rəʊd>ridden|ˈrɪdn>cavalcare;rise|raɪz>rose|rəʊz>risen|ˈrɪzn>alzarsi;shake|ʃeɪk>shook|ʃʊk>shaken|ˈʃeɪkən>scuotere;take|teɪk>took|tʊk>taken|ˈteɪkən>prendere;write|raɪt>wrote|rəʊt>written|ˈrɪtn>scrivere;see|siː>saw|sɔː>seen|siːn>vedere;show|ʃəʊ>showed|ʃəʊd>shown|ʃəʊn>mostrare"],
+["Super irregular","Learn these by heart first!","be|biː>was, were|wəz, wɒz, wə(r), wɜː(r)>been|bɪn, biːn>essere;do|də, du>did|dɪd>done|dʌn>fare;go|gəʊ>went|went>gone, been|gɒn, biːn>andare"]
+];
+var $=function(i){return document.getElementById(i)};
+function f(t){var a=t.split("|");return{w:a[0],i:a[1]||""}}
+function parse(s){return s.split(";").map(function(x){var p=x.split(">");return{b:f(p[0]),p:f(p[1]),pp:f(p[2]),it:p[3]}})}
+function cell(o,k){return '<span class="c" data-k="'+k+'"><b>'+o.w+'</b><i>/'+o.i+'/</i></span>'}
+function fm(o){return '<b>'+o.w+'</b> <i>/'+o.i+'/</i>'}
+var S={b:0,p:0,q:0,i:0},mix=false;
+function all(){return [].slice.call(document.querySelectorAll("#v1 .c"))}
+function refresh(){all().forEach(function(s){var k=s.dataset.k,h=!s.dataset.rv&&(S[k]||(mix&&s.parentNode.dataset.m!==k));s.classList.toggle("hid",!!h)})}
+function clearRv(){all().forEach(function(s){delete s.dataset.rv})}
+function shuffle(){[].forEach.call(document.querySelectorAll("#v1 .r"),function(r){r.dataset.m="bpqi".charAt(Math.floor(Math.random()*4))})}
+function build(){
+ var h='<div class="bar"><button id="cvb">Cover base</button><button id="cvp">Cover past simple</button><button id="cvq">Cover participle</button><button id="cvi">Cover Italian</button><button id="cvm">Mixed</button><button id="cva">Show all</button></div><p style="color:var(--mu);font-size:.85rem;margin:0 0 10px">Tap a hidden box to reveal it. Mixed hides all but one column in each row, a different one each time you tap it.</p>';
+ G.forEach(function(g,i){
+  h+='<div class="g"><h2>'+(i+1)+'. '+g[0]+'</h2><p>'+g[1]+'</p><div class="hd"><span>Base</span><span>Past simple</span><span>Participle</span><span>Italiano</span></div>';
+  parse(g[2]).forEach(function(v){h+='<div class="r">'+cell(v.b,"b")+cell(v.p,"p")+cell(v.pp,"q")+'<span class="c it" data-k="i">'+v.it+'</span></div>'});
+  h+='</div>'});
+ $("v1").innerHTML=h;shuffle();
+ [["cvb","b"],["cvp","p"],["cvq","q"],["cvi","i"]].forEach(function(x){$(x[0]).onclick=function(){S[x[1]]=!S[x[1]];clearRv();this.classList.toggle("on",!!S[x[1]]);refresh()}});
+ $("cvm").onclick=function(){mix=true;shuffle();clearRv();this.classList.add("on");refresh()};
+ $("cva").onclick=function(){S={b:0,p:0,q:0,i:0};mix=false;clearRv();[].forEach.call(document.querySelectorAll("#v1 .bar button"),function(b){b.classList.remove("on")});refresh()};
+ $("v1").onclick=function(e){var s=e.target.closest&&e.target.closest(".c");if(s&&s.classList.contains("hid")){s.dataset.rv=1;refresh()}};
+}
+var deck=[],done=0,total=0,shown=false;
+function setup(){
+ var o='';
+ G.forEach(function(g,i){o+='<label><input type="checkbox" class="gc" value="'+i+'" checked>'+(i+1)+'. '+g[0]+'</label>'});
+ $("v2").innerHTML='<div class="bar"><select id="md"><option value="2">English → forms (Italian hidden)</option><option value="1">Italiano → English</option></select><button id="rs">Restart</button><button id="sa">All</button><button id="sn">None</button></div><div class="chips" id="sel">'+o+'</div><div id="fc"></div>';
+ $("sel").onchange=start;$("md").onchange=start;$("rs").onclick=start;$("sa").onclick=function(){setAll(true)};$("sn").onclick=function(){setAll(false)};start();
+}
+function setAll(b){[].forEach.call(document.querySelectorAll(".gc"),function(x){x.checked=b});start()}
+function start(){
+ var on=[].slice.call(document.querySelectorAll(".gc:checked")).map(function(x){return +x.value}),all=[];
+ G.forEach(function(g,i){if(on.indexOf(i)>-1)all=all.concat(parse(g[2]))});
+ for(var i=all.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=all[i];all[i]=all[j];all[j]=t}
+ deck=all;total=all.length;done=0;shown=false;draw();
+}
+function draw(){
+ var fc=$("fc");
+ if(!deck.length){fc.innerHTML=total?'<div class="fc"><div class="b">Well done! 🎉</div><div class="i">You know all '+total+' verbs in this set.</div></div>':'<div class="fc"><div class="i">Select at least one group.</div></div>';return}
+ var c=deck[0],M=+$("md").value,R=M===1,front,back;
+ front=R?'<div class="b">'+c.it+'</div>'+(shown?'<div class="a">'+fm(c.b)+'</div>':''):'<div class="b">'+c.b.w+'</div><div class="ip">/'+c.b.i+'/</div>'+(M===2&&!shown?'':'<div class="i">'+c.it+'</div>');
+ back=shown?'<div class="a">'+fm(c.p)+'</div><div class="a">'+fm(c.pp)+'</div>':'<button id="sh">Show Italian & past forms</button>';
+ fc.innerHTML='<div class="pr">Known: '+done+' / '+total+'</div><div class="fc">'+front+back+'</div>'+
+ (shown?'<div class="row"><button class="no" id="ag">Again</button><button class="ok" id="gt">I knew it</button></div>':'');
+ if(!shown)$("sh").onclick=function(){shown=true;draw()};
+ else{$("ag").onclick=function(){deck.push(deck.shift());shown=false;draw()};
+ $("gt").onclick=function(){deck.shift();done++;shown=false;draw()}}
+}
+$("t1").onclick=function(){$("v1").hidden=false;$("v2").hidden=true;$("t1").className="on";$("t2").className=""};
+$("t2").onclick=function(){$("v1").hidden=true;$("v2").hidden=false;$("t2").className="on";$("t1").className=""};
+build();setup();
+</script></body></html>
